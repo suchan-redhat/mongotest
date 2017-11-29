@@ -1,0 +1,1557 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://ejb.bulletin.service.minds.mips/" xmlns:intf="http://ejb.bulletin.service.minds.mips/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ejb.bulletin.service.minds.mips/">
+	<wsdl:types>
+		<schema targetNamespace="http://ejb.bulletin.service.minds.mips/" xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+			<complexType name="BulletinWebServiceException">
+				<sequence/>
+			</complexType>
+			<complexType name="EleVal">
+				<sequence>
+					<element name="content" nillable="true" type="xsd:string"/>
+					<element name="eleId" nillable="true" type="xsd:long"/>
+					<element name="lang" nillable="true" type="xsd:string"/>
+				</sequence>
+			</complexType>
+			<complexType name="ArrayOfEleVal">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="impl:EleVal[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOf_xsd_string">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:string[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOf_xsd_long">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:long[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="SubmitVal">
+				<sequence>
+					<element name="activeTime" nillable="true" type="xsd:dateTime"/>
+					<element name="activeTimeIsNull" type="xsd:boolean"/>
+					<element name="bullId" nillable="true" type="xsd:long"/>
+					<element name="expectedEndTime" nillable="true" type="xsd:dateTime"/>
+					<element name="expectedEndTimeIsNull" type="xsd:boolean"/>
+					<element name="expireTime" nillable="true" type="xsd:dateTime"/>
+					<element name="expireTimeIsNull" type="xsd:boolean"/>
+					<element name="legacyRef" nillable="true" type="xsd:string"/>
+					<element name="sendTime" nillable="true" type="xsd:dateTime"/>
+					<element name="sendTimeIsNull" type="xsd:boolean"/>
+				</sequence>
+			</complexType>
+			<complexType name="ArrayOfSubmitVal">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="impl:SubmitVal[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+		</schema>
+	</wsdl:types>
+	<wsdl:message name="findKeywordsByFulltextsResponse">
+		<wsdl:part name="findKeywordsByFulltextsReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="findResourcesRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:long"/>
+	</wsdl:message>
+	<wsdl:message name="findKeywordsByFulltextsRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:long"/>
+		<wsdl:part name="in2" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="findStoppableSnapshotXMLRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="cancelSubmitResponse">
+		<wsdl:part name="cancelSubmitReturn" type="xsd:boolean"/>
+	</wsdl:message>
+	<wsdl:message name="openFormRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:long"/>
+	</wsdl:message>
+	<wsdl:message name="updateEleValsRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:long"/>
+		<wsdl:part name="in2" type="impl:ArrayOfEleVal"/>
+	</wsdl:message>
+	<wsdl:message name="disableSignalRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:long"/>
+		<wsdl:part name="in2" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="isWizardFormResponse">
+		<wsdl:part name="isWizardFormReturn" type="xsd:boolean"/>
+	</wsdl:message>
+	<wsdl:message name="findActiveSignalRequestByTimePeriodXMLRequest">
+		<wsdl:part name="in0" type="xsd:dateTime"/>
+		<wsdl:part name="in1" type="xsd:dateTime"/>
+	</wsdl:message>
+	<wsdl:message name="getFormBulletinXMLRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:long"/>
+	</wsdl:message>
+	<wsdl:message name="getActiveBearingByDegreeResponse">
+		<wsdl:part name="getActiveBearingByDegreeReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="saveFormRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:long"/>
+		<wsdl:part name="in2" type="xsd:string"/>
+		<wsdl:part name="in3" type="xsd:string"/>
+		<wsdl:part name="in4" type="impl:ArrayOfEleVal"/>
+	</wsdl:message>
+	<wsdl:message name="isFormSubmitableResponse">
+		<wsdl:part name="isFormSubmitableReturn" type="xsd:boolean"/>
+	</wsdl:message>
+	<wsdl:message name="findSignalByPhaseIdXMLRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:long"/>
+	</wsdl:message>
+	<wsdl:message name="findBulletinListResponse">
+		<wsdl:part name="findBulletinListReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="isWizardFormRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:long"/>
+	</wsdl:message>
+	<wsdl:message name="isFormSubmitableRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:long"/>
+	</wsdl:message>
+	<wsdl:message name="getEditableFormDetailsXMLResponse">
+		<wsdl:part name="getEditableFormDetailsXMLReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="findAllActiveWithContentByFormIdRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:long"/>
+	</wsdl:message>
+	<wsdl:message name="isWizardFormEditableRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:long"/>
+	</wsdl:message>
+	<wsdl:message name="getLatestDisseminatedChoiceIconByEleCodeLangResponse">
+		<wsdl:part name="getLatestDisseminatedChoiceIconByEleCodeLangReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="getElementIconRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:string"/>
+		<wsdl:part name="in2" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="findActiveKeywordsValueByCatCodeResponse">
+		<wsdl:part name="findActiveKeywordsValueByCatCodeReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="getFormReferenceXMLResponse">
+		<wsdl:part name="getFormReferenceXMLReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="getLastSignalInstanceBySignalCodeAndRefCodeResponse">
+		<wsdl:part name="getLastSignalInstanceBySignalCodeAndRefCodeReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="findDisseminateScheduleRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:long"/>
+		<wsdl:part name="in2" type="xsd:long"/>
+		<wsdl:part name="in3" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="findResourcesResponse">
+		<wsdl:part name="findResourcesReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="loadFormXMLRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:long"/>
+		<wsdl:part name="in2" type="xsd:long"/>
+	</wsdl:message>
+	<wsdl:message name="submitBulletinRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:string"/>
+		<wsdl:part name="in2" type="xsd:string"/>
+		<wsdl:part name="in3" type="xsd:long"/>
+		<wsdl:part name="in4" type="xsd:boolean"/>
+		<wsdl:part name="in5" type="impl:SubmitVal"/>
+		<wsdl:part name="in6" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="disableSignalByInstanceIdRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:long"/>
+	</wsdl:message>
+	<wsdl:message name="disableSignalResponse">
+		<wsdl:part name="disableSignalReturn" type="xsd:boolean"/>
+	</wsdl:message>
+	<wsdl:message name="updateSnapshotXMLResponse">
+		<wsdl:part name="updateSnapshotXMLReturn" type="xsd:boolean"/>
+	</wsdl:message>
+	<wsdl:message name="getElementContentRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:string"/>
+		<wsdl:part name="in2" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="deleteSavedFormResponse">
+		<wsdl:part name="deleteSavedFormReturn" type="xsd:boolean"/>
+	</wsdl:message>
+	<wsdl:message name="getElementContentResponse">
+		<wsdl:part name="getElementContentReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="findBulletinListRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="getSignalXMLResponse">
+		<wsdl:part name="getSignalXMLReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="getElementIconResponse">
+		<wsdl:part name="getElementIconReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="deleteSavedFormRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:long"/>
+	</wsdl:message>
+	<wsdl:message name="findAllActiveWithContentByFormIdResponse">
+		<wsdl:part name="findAllActiveWithContentByFormIdReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="getFormDetailsByCodeXMLRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="getSignalXMLRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="findActiveKeywordsByCatResponse">
+		<wsdl:part name="findActiveKeywordsByCatReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="isFormSuitableForCorrectionResponse">
+		<wsdl:part name="isFormSuitableForCorrectionReturn" type="xsd:boolean"/>
+	</wsdl:message>
+	<wsdl:message name="findListOfValueResponse">
+		<wsdl:part name="findListOfValueReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="updateEleValsResponse">
+		<wsdl:part name="updateEleValsReturn" type="xsd:boolean"/>
+	</wsdl:message>
+	<wsdl:message name="getLatestStrengthActiveTimeBySignalCodeCutOffTimeRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:dateTime"/>
+	</wsdl:message>
+	<wsdl:message name="getFormDetailsByCodeXMLResponse">
+		<wsdl:part name="getFormDetailsByCodeXMLReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="isWizardFormEditableResponse">
+		<wsdl:part name="isWizardFormEditableReturn" type="xsd:boolean"/>
+	</wsdl:message>
+	<wsdl:message name="findProdScheduleSubmitStatusResponse">
+		<wsdl:part name="findProdScheduleSubmitStatusReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="findListOfValueRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:long"/>
+	</wsdl:message>
+	<wsdl:message name="updateSnapshotXMLRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:long"/>
+		<wsdl:part name="in2" type="xsd:string"/>
+		<wsdl:part name="in3" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="getBulletinFormListXMLRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="findPreSignalListXMLResponse">
+		<wsdl:part name="findPreSignalListXMLReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="saveEleValResponse">
+		<wsdl:part name="saveEleValReturn" type="xsd:boolean"/>
+	</wsdl:message>
+	<wsdl:message name="submitBulletinResponse">
+
+   </wsdl:message>
+	<wsdl:message name="isReadOnlyFormRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:long"/>
+	</wsdl:message>
+	<wsdl:message name="getActiveLPS_SequenceByHKOOIDRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="updateFormResponse">
+
+   </wsdl:message>
+	<wsdl:message name="findActiveVisibleBulletinByTypeRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="getEditableFormDetailsXMLRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:long"/>
+		<wsdl:part name="in2" type="xsd:long"/>
+	</wsdl:message>
+	<wsdl:message name="findPreviousSignalBySignalTypeAndEndTimeRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:string"/>
+		<wsdl:part name="in2" type="xsd:dateTime"/>
+	</wsdl:message>
+	<wsdl:message name="getSnapshotsXMLResponse">
+		<wsdl:part name="getSnapshotsXMLReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="getFormBulletinXMLResponse">
+		<wsdl:part name="getFormBulletinXMLReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="enableSignalRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:long"/>
+		<wsdl:part name="in2" type="xsd:string"/>
+		<wsdl:part name="in3" type="xsd:string"/>
+		<wsdl:part name="in4" type="xsd:dateTime"/>
+		<wsdl:part name="in5" type="xsd:boolean"/>
+	</wsdl:message>
+	<wsdl:message name="getActiveBearingByDegreeRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:double"/>
+	</wsdl:message>
+	<wsdl:message name="findDisseminateScheduleResponse">
+		<wsdl:part name="findDisseminateScheduleReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="getLatestStrengthActiveTimeBySignalCodeCutOffTimeResponse">
+		<wsdl:part name="getLatestStrengthActiveTimeBySignalCodeCutOffTimeReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="disableSignalByInstanceIdResponse">
+		<wsdl:part name="disableSignalByInstanceIdReturn" type="xsd:boolean"/>
+	</wsdl:message>
+	<wsdl:message name="closeFormResponse">
+		<wsdl:part name="closeFormReturn" type="xsd:boolean"/>
+	</wsdl:message>
+	<wsdl:message name="saveFormResponse">
+		<wsdl:part name="saveFormReturn" type="xsd:long"/>
+	</wsdl:message>
+	<wsdl:message name="getFormReferenceXMLRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:long"/>
+	</wsdl:message>
+	<wsdl:message name="getFormDetailsXMLRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:long"/>
+	</wsdl:message>
+	<wsdl:message name="findActiveKeywordsValueByCatCodeRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:string"/>
+		<wsdl:part name="in2" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="isReadOnlyFormResponse">
+		<wsdl:part name="isReadOnlyFormReturn" type="xsd:boolean"/>
+	</wsdl:message>
+	<wsdl:message name="getBulletinFormListXMLResponse">
+		<wsdl:part name="getBulletinFormListXMLReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="findActiveVisibleBulletinRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="findPreSignalListXMLRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="impl:ArrayOf_xsd_string"/>
+		<wsdl:part name="in2" type="impl:ArrayOf_xsd_string"/>
+	</wsdl:message>
+	<wsdl:message name="findElementByFulltextsRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:string"/>
+		<wsdl:part name="in2" type="xsd:long"/>
+		<wsdl:part name="in3" type="xsd:dateTime"/>
+		<wsdl:part name="in4" type="xsd:dateTime"/>
+	</wsdl:message>
+	<wsdl:message name="getUpdateSnapshotsXMLRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:long"/>
+		<wsdl:part name="in2" type="xsd:int"/>
+	</wsdl:message>
+	<wsdl:message name="findActiveSignalRequestBySendTimeRequest">
+		<wsdl:part name="in0" type="xsd:dateTime"/>
+	</wsdl:message>
+	<wsdl:message name="findActiveVisibleBulletinResponse">
+		<wsdl:part name="findActiveVisibleBulletinReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="findPreviousSignalBySignalTypeAndEndTimeResponse">
+		<wsdl:part name="findPreviousSignalBySignalTypeAndEndTimeReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="findElementByFulltextsResponse">
+		<wsdl:part name="findElementByFulltextsReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="findActiveBulletinSubmitResponse">
+		<wsdl:part name="findActiveBulletinSubmitReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="getUpdateSnapshotsXMLResponse">
+		<wsdl:part name="getUpdateSnapshotsXMLReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="isFormSuitableForCorrectionRequest">
+		<wsdl:part name="in0" type="xsd:long"/>
+		<wsdl:part name="in1" type="xsd:dateTime"/>
+		<wsdl:part name="in2" type="xsd:long"/>
+	</wsdl:message>
+	<wsdl:message name="getFormCodeByFormIdResponse">
+		<wsdl:part name="getFormCodeByFormIdReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="findLatestDisseminatedElementValueByEleCodesResponse">
+		<wsdl:part name="findLatestDisseminatedElementValueByEleCodesReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="findActiveBulletinSubmitRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:int"/>
+		<wsdl:part name="in2" type="xsd:long"/>
+		<wsdl:part name="in3" type="xsd:int"/>
+		<wsdl:part name="in4" type="xsd:dateTime"/>
+		<wsdl:part name="in5" type="xsd:int"/>
+		<wsdl:part name="in6" type="xsd:dateTime"/>
+		<wsdl:part name="in7" type="xsd:int"/>
+		<wsdl:part name="in8" type="impl:ArrayOf_xsd_string"/>
+		<wsdl:part name="in9" type="xsd:int"/>
+		<wsdl:part name="in10" type="impl:ArrayOf_xsd_string"/>
+		<wsdl:part name="in11" type="xsd:int"/>
+		<wsdl:part name="in12" type="xsd:string"/>
+		<wsdl:part name="in13" type="xsd:int"/>
+		<wsdl:part name="in14" type="impl:ArrayOf_xsd_long"/>
+		<wsdl:part name="in15" type="xsd:int"/>
+		<wsdl:part name="in16" type="impl:ArrayOf_xsd_string"/>
+		<wsdl:part name="in17" type="xsd:int"/>
+		<wsdl:part name="in18" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="isSignalRunningResponse">
+		<wsdl:part name="isSignalRunningReturn" type="xsd:boolean"/>
+	</wsdl:message>
+	<wsdl:message name="openFormResponse">
+		<wsdl:part name="openFormReturn" type="xsd:boolean"/>
+	</wsdl:message>
+	<wsdl:message name="editFormRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:long"/>
+	</wsdl:message>
+	<wsdl:message name="findStoppableSnapshotXMLResponse">
+		<wsdl:part name="findStoppableSnapshotXMLReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="findActiveKeywordsByCatRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="enableSignalResponse">
+		<wsdl:part name="enableSignalReturn" type="xsd:boolean"/>
+	</wsdl:message>
+	<wsdl:message name="updateFormRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:long"/>
+		<wsdl:part name="in2" type="xsd:string"/>
+		<wsdl:part name="in3" type="xsd:string"/>
+		<wsdl:part name="in4" type="impl:ArrayOfEleVal"/>
+	</wsdl:message>
+	<wsdl:message name="isSignalRunningRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:long"/>
+		<wsdl:part name="in2" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="editFormResponse">
+		<wsdl:part name="editFormReturn" type="xsd:boolean"/>
+	</wsdl:message>
+	<wsdl:message name="findProdScheduleSubmitStatusRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:long"/>
+		<wsdl:part name="in2" type="xsd:dateTime"/>
+	</wsdl:message>
+	<wsdl:message name="getFormDetailsXMLResponse">
+		<wsdl:part name="getFormDetailsXMLReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="cancelSubmitRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:long"/>
+	</wsdl:message>
+	<wsdl:message name="findSignalByPhaseIdXMLResponse">
+		<wsdl:part name="findSignalByPhaseIdXMLReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="findActiveVisibleBulletinByTypeResponse">
+		<wsdl:part name="findActiveVisibleBulletinByTypeReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="getActiveLPS_SequenceByHKOOIDResponse">
+		<wsdl:part name="getActiveLPS_SequenceByHKOOIDReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="submitBulletinsRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:string"/>
+		<wsdl:part name="in2" type="xsd:string"/>
+		<wsdl:part name="in3" type="xsd:string"/>
+		<wsdl:part name="in4" type="xsd:boolean"/>
+		<wsdl:part name="in5" type="xsd:int"/>
+		<wsdl:part name="in6" type="xsd:string"/>
+		<wsdl:part name="in7" type="xsd:string"/>
+		<wsdl:part name="in8" type="xsd:string"/>
+		<wsdl:part name="in9" type="xsd:boolean"/>
+		<wsdl:part name="in10" type="xsd:long"/>
+		<wsdl:part name="in11" type="xsd:long"/>
+		<wsdl:part name="in12" type="xsd:long"/>
+		<wsdl:part name="in13" type="xsd:string"/>
+		<wsdl:part name="in14" type="xsd:string"/>
+		<wsdl:part name="in15" type="impl:ArrayOfSubmitVal"/>
+	</wsdl:message>
+	<wsdl:message name="BulletinWebServiceException">
+		<wsdl:part name="fault" type="impl:BulletinWebServiceException"/>
+	</wsdl:message>
+	<wsdl:message name="getFormCodeByFormIdRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:long"/>
+	</wsdl:message>
+	<wsdl:message name="findLatestDisseminatedElementValueByEleCodesRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="impl:ArrayOf_xsd_string"/>
+	</wsdl:message>
+	<wsdl:message name="loadFormXMLResponse">
+		<wsdl:part name="loadFormXMLReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="getLastSignalInstanceBySignalCodeAndRefCodeRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:string"/>
+		<wsdl:part name="in2" type="xsd:int"/>
+		<wsdl:part name="in3" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="findActiveSignalRequestByTimePeriodXMLResponse">
+		<wsdl:part name="findActiveSignalRequestByTimePeriodXMLReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="closeFormRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:long"/>
+	</wsdl:message>
+	<wsdl:message name="submitBulletinsResponse">
+
+   </wsdl:message>
+	<wsdl:message name="getLatestDisseminatedChoiceIconByEleCodeLangRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:string"/>
+		<wsdl:part name="in2" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="getSnapshotsXMLRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:long"/>
+		<wsdl:part name="in2" type="xsd:int"/>
+	</wsdl:message>
+	<wsdl:message name="findActiveSignalRequestBySendTimeResponse">
+		<wsdl:part name="findActiveSignalRequestBySendTimeReturn" type="xsd:string"/>
+	</wsdl:message>
+	<wsdl:message name="saveEleValRequest">
+		<wsdl:part name="in0" type="xsd:string"/>
+		<wsdl:part name="in1" type="xsd:long"/>
+		<wsdl:part name="in2" type="impl:EleVal"/>
+	</wsdl:message>
+	<wsdl:portType name="BulletinServiceWebService">
+		<wsdl:operation name="getBulletinFormListXML" parameterOrder="in0">
+			<wsdl:input name="getBulletinFormListXMLRequest" message="impl:getBulletinFormListXMLRequest"/>
+			<wsdl:output name="getBulletinFormListXMLResponse" message="impl:getBulletinFormListXMLResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="isWizardForm" parameterOrder="in0 in1">
+			<wsdl:input name="isWizardFormRequest" message="impl:isWizardFormRequest"/>
+			<wsdl:output name="isWizardFormResponse" message="impl:isWizardFormResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="getSignalXML" parameterOrder="in0">
+			<wsdl:input name="getSignalXMLRequest" message="impl:getSignalXMLRequest"/>
+			<wsdl:output name="getSignalXMLResponse" message="impl:getSignalXMLResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="getFormDetailsXML" parameterOrder="in0 in1">
+			<wsdl:input name="getFormDetailsXMLRequest" message="impl:getFormDetailsXMLRequest"/>
+			<wsdl:output name="getFormDetailsXMLResponse" message="impl:getFormDetailsXMLResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="saveForm" parameterOrder="in0 in1 in2 in3 in4">
+			<wsdl:input name="saveFormRequest" message="impl:saveFormRequest"/>
+			<wsdl:output name="saveFormResponse" message="impl:saveFormResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="saveEleVal" parameterOrder="in0 in1 in2">
+			<wsdl:input name="saveEleValRequest" message="impl:saveEleValRequest"/>
+			<wsdl:output name="saveEleValResponse" message="impl:saveEleValResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="findBulletinList" parameterOrder="in0">
+			<wsdl:input name="findBulletinListRequest" message="impl:findBulletinListRequest"/>
+			<wsdl:output name="findBulletinListResponse" message="impl:findBulletinListResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="findActiveBulletinSubmit" parameterOrder="in0 in1 in2 in3 in4 in5 in6 in7 in8 in9 in10 in11 in12 in13 in14 in15 in16 in17 in18">
+			<wsdl:input name="findActiveBulletinSubmitRequest" message="impl:findActiveBulletinSubmitRequest"/>
+			<wsdl:output name="findActiveBulletinSubmitResponse" message="impl:findActiveBulletinSubmitResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="getSnapshotsXML" parameterOrder="in0 in1 in2">
+			<wsdl:input name="getSnapshotsXMLRequest" message="impl:getSnapshotsXMLRequest"/>
+			<wsdl:output name="getSnapshotsXMLResponse" message="impl:getSnapshotsXMLResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="findStoppableSnapshotXML" parameterOrder="in0">
+			<wsdl:input name="findStoppableSnapshotXMLRequest" message="impl:findStoppableSnapshotXMLRequest"/>
+			<wsdl:output name="findStoppableSnapshotXMLResponse" message="impl:findStoppableSnapshotXMLResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="loadFormXML" parameterOrder="in0 in1 in2">
+			<wsdl:input name="loadFormXMLRequest" message="impl:loadFormXMLRequest"/>
+			<wsdl:output name="loadFormXMLResponse" message="impl:loadFormXMLResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="submitBulletin" parameterOrder="in0 in1 in2 in3 in4 in5 in6">
+			<wsdl:input name="submitBulletinRequest" message="impl:submitBulletinRequest"/>
+			<wsdl:output name="submitBulletinResponse" message="impl:submitBulletinResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="submitBulletins" parameterOrder="in0 in1 in2 in3 in4 in5 in6 in7 in8 in9 in10 in11 in12 in13 in14 in15">
+			<wsdl:input name="submitBulletinsRequest" message="impl:submitBulletinsRequest"/>
+			<wsdl:output name="submitBulletinsResponse" message="impl:submitBulletinsResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="getFormBulletinXML" parameterOrder="in0 in1">
+			<wsdl:input name="getFormBulletinXMLRequest" message="impl:getFormBulletinXMLRequest"/>
+			<wsdl:output name="getFormBulletinXMLResponse" message="impl:getFormBulletinXMLResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="getFormDetailsByCodeXML" parameterOrder="in0 in1">
+			<wsdl:input name="getFormDetailsByCodeXMLRequest" message="impl:getFormDetailsByCodeXMLRequest"/>
+			<wsdl:output name="getFormDetailsByCodeXMLResponse" message="impl:getFormDetailsByCodeXMLResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="updateForm" parameterOrder="in0 in1 in2 in3 in4">
+			<wsdl:input name="updateFormRequest" message="impl:updateFormRequest"/>
+			<wsdl:output name="updateFormResponse" message="impl:updateFormResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="findElementByFulltexts" parameterOrder="in0 in1 in2 in3 in4">
+			<wsdl:input name="findElementByFulltextsRequest" message="impl:findElementByFulltextsRequest"/>
+			<wsdl:output name="findElementByFulltextsResponse" message="impl:findElementByFulltextsResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="findKeywordsByFulltexts" parameterOrder="in0 in1 in2">
+			<wsdl:input name="findKeywordsByFulltextsRequest" message="impl:findKeywordsByFulltextsRequest"/>
+			<wsdl:output name="findKeywordsByFulltextsResponse" message="impl:findKeywordsByFulltextsResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="findListOfValue" parameterOrder="in0 in1">
+			<wsdl:input name="findListOfValueRequest" message="impl:findListOfValueRequest"/>
+			<wsdl:output name="findListOfValueResponse" message="impl:findListOfValueResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="findSignalByPhaseIdXML" parameterOrder="in0 in1">
+			<wsdl:input name="findSignalByPhaseIdXMLRequest" message="impl:findSignalByPhaseIdXMLRequest"/>
+			<wsdl:output name="findSignalByPhaseIdXMLResponse" message="impl:findSignalByPhaseIdXMLResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="findPreSignalListXML" parameterOrder="in0 in1 in2">
+			<wsdl:input name="findPreSignalListXMLRequest" message="impl:findPreSignalListXMLRequest"/>
+			<wsdl:output name="findPreSignalListXMLResponse" message="impl:findPreSignalListXMLResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="isSignalRunning" parameterOrder="in0 in1 in2">
+			<wsdl:input name="isSignalRunningRequest" message="impl:isSignalRunningRequest"/>
+			<wsdl:output name="isSignalRunningResponse" message="impl:isSignalRunningResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="enableSignal" parameterOrder="in0 in1 in2 in3 in4 in5">
+			<wsdl:input name="enableSignalRequest" message="impl:enableSignalRequest"/>
+			<wsdl:output name="enableSignalResponse" message="impl:enableSignalResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="disableSignal" parameterOrder="in0 in1 in2">
+			<wsdl:input name="disableSignalRequest" message="impl:disableSignalRequest"/>
+			<wsdl:output name="disableSignalResponse" message="impl:disableSignalResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="disableSignalByInstanceId" parameterOrder="in0 in1">
+			<wsdl:input name="disableSignalByInstanceIdRequest" message="impl:disableSignalByInstanceIdRequest"/>
+			<wsdl:output name="disableSignalByInstanceIdResponse" message="impl:disableSignalByInstanceIdResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="isReadOnlyForm" parameterOrder="in0 in1">
+			<wsdl:input name="isReadOnlyFormRequest" message="impl:isReadOnlyFormRequest"/>
+			<wsdl:output name="isReadOnlyFormResponse" message="impl:isReadOnlyFormResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="isFormSubmitable" parameterOrder="in0 in1">
+			<wsdl:input name="isFormSubmitableRequest" message="impl:isFormSubmitableRequest"/>
+			<wsdl:output name="isFormSubmitableResponse" message="impl:isFormSubmitableResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="updateEleVals" parameterOrder="in0 in1 in2">
+			<wsdl:input name="updateEleValsRequest" message="impl:updateEleValsRequest"/>
+			<wsdl:output name="updateEleValsResponse" message="impl:updateEleValsResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="getUpdateSnapshotsXML" parameterOrder="in0 in1 in2">
+			<wsdl:input name="getUpdateSnapshotsXMLRequest" message="impl:getUpdateSnapshotsXMLRequest"/>
+			<wsdl:output name="getUpdateSnapshotsXMLResponse" message="impl:getUpdateSnapshotsXMLResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="getEditableFormDetailsXML" parameterOrder="in0 in1 in2">
+			<wsdl:input name="getEditableFormDetailsXMLRequest" message="impl:getEditableFormDetailsXMLRequest"/>
+			<wsdl:output name="getEditableFormDetailsXMLResponse" message="impl:getEditableFormDetailsXMLResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="isWizardFormEditable" parameterOrder="in0 in1">
+			<wsdl:input name="isWizardFormEditableRequest" message="impl:isWizardFormEditableRequest"/>
+			<wsdl:output name="isWizardFormEditableResponse" message="impl:isWizardFormEditableResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="cancelSubmit" parameterOrder="in0 in1">
+			<wsdl:input name="cancelSubmitRequest" message="impl:cancelSubmitRequest"/>
+			<wsdl:output name="cancelSubmitResponse" message="impl:cancelSubmitResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="updateSnapshotXML" parameterOrder="in0 in1 in2 in3">
+			<wsdl:input name="updateSnapshotXMLRequest" message="impl:updateSnapshotXMLRequest"/>
+			<wsdl:output name="updateSnapshotXMLResponse" message="impl:updateSnapshotXMLResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="getActiveBearingByDegree" parameterOrder="in0 in1">
+			<wsdl:input name="getActiveBearingByDegreeRequest" message="impl:getActiveBearingByDegreeRequest"/>
+			<wsdl:output name="getActiveBearingByDegreeResponse" message="impl:getActiveBearingByDegreeResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="findActiveKeywordsByCat" parameterOrder="in0 in1">
+			<wsdl:input name="findActiveKeywordsByCatRequest" message="impl:findActiveKeywordsByCatRequest"/>
+			<wsdl:output name="findActiveKeywordsByCatResponse" message="impl:findActiveKeywordsByCatResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="findActiveKeywordsValueByCatCode" parameterOrder="in0 in1 in2">
+			<wsdl:input name="findActiveKeywordsValueByCatCodeRequest" message="impl:findActiveKeywordsValueByCatCodeRequest"/>
+			<wsdl:output name="findActiveKeywordsValueByCatCodeResponse" message="impl:findActiveKeywordsValueByCatCodeResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="findAllActiveWithContentByFormId" parameterOrder="in0 in1">
+			<wsdl:input name="findAllActiveWithContentByFormIdRequest" message="impl:findAllActiveWithContentByFormIdRequest"/>
+			<wsdl:output name="findAllActiveWithContentByFormIdResponse" message="impl:findAllActiveWithContentByFormIdResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="findDisseminateSchedule" parameterOrder="in0 in1 in2 in3">
+			<wsdl:input name="findDisseminateScheduleRequest" message="impl:findDisseminateScheduleRequest"/>
+			<wsdl:output name="findDisseminateScheduleResponse" message="impl:findDisseminateScheduleResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="findProdScheduleSubmitStatus" parameterOrder="in0 in1 in2">
+			<wsdl:input name="findProdScheduleSubmitStatusRequest" message="impl:findProdScheduleSubmitStatusRequest"/>
+			<wsdl:output name="findProdScheduleSubmitStatusResponse" message="impl:findProdScheduleSubmitStatusResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="findActiveVisibleBulletin" parameterOrder="in0">
+			<wsdl:input name="findActiveVisibleBulletinRequest" message="impl:findActiveVisibleBulletinRequest"/>
+			<wsdl:output name="findActiveVisibleBulletinResponse" message="impl:findActiveVisibleBulletinResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="findActiveVisibleBulletinByType" parameterOrder="in0 in1">
+			<wsdl:input name="findActiveVisibleBulletinByTypeRequest" message="impl:findActiveVisibleBulletinByTypeRequest"/>
+			<wsdl:output name="findActiveVisibleBulletinByTypeResponse" message="impl:findActiveVisibleBulletinByTypeResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="getLastSignalInstanceBySignalCodeAndRefCode" parameterOrder="in0 in1 in2 in3">
+			<wsdl:input name="getLastSignalInstanceBySignalCodeAndRefCodeRequest" message="impl:getLastSignalInstanceBySignalCodeAndRefCodeRequest"/>
+			<wsdl:output name="getLastSignalInstanceBySignalCodeAndRefCodeResponse" message="impl:getLastSignalInstanceBySignalCodeAndRefCodeResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="getActiveLPS_SequenceByHKOOID" parameterOrder="in0 in1">
+			<wsdl:input name="getActiveLPS_SequenceByHKOOIDRequest" message="impl:getActiveLPS_SequenceByHKOOIDRequest"/>
+			<wsdl:output name="getActiveLPS_SequenceByHKOOIDResponse" message="impl:getActiveLPS_SequenceByHKOOIDResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="findPreviousSignalBySignalTypeAndEndTime" parameterOrder="in0 in1 in2">
+			<wsdl:input name="findPreviousSignalBySignalTypeAndEndTimeRequest" message="impl:findPreviousSignalBySignalTypeAndEndTimeRequest"/>
+			<wsdl:output name="findPreviousSignalBySignalTypeAndEndTimeResponse" message="impl:findPreviousSignalBySignalTypeAndEndTimeResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="findActiveSignalRequestByTimePeriodXML" parameterOrder="in0 in1">
+			<wsdl:input name="findActiveSignalRequestByTimePeriodXMLRequest" message="impl:findActiveSignalRequestByTimePeriodXMLRequest"/>
+			<wsdl:output name="findActiveSignalRequestByTimePeriodXMLResponse" message="impl:findActiveSignalRequestByTimePeriodXMLResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="findActiveSignalRequestBySendTime" parameterOrder="in0">
+			<wsdl:input name="findActiveSignalRequestBySendTimeRequest" message="impl:findActiveSignalRequestBySendTimeRequest"/>
+			<wsdl:output name="findActiveSignalRequestBySendTimeResponse" message="impl:findActiveSignalRequestBySendTimeResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="getLatestStrengthActiveTimeBySignalCodeCutOffTime" parameterOrder="in0 in1">
+			<wsdl:input name="getLatestStrengthActiveTimeBySignalCodeCutOffTimeRequest" message="impl:getLatestStrengthActiveTimeBySignalCodeCutOffTimeRequest"/>
+			<wsdl:output name="getLatestStrengthActiveTimeBySignalCodeCutOffTimeResponse" message="impl:getLatestStrengthActiveTimeBySignalCodeCutOffTimeResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="isFormSuitableForCorrection" parameterOrder="in0 in1 in2">
+			<wsdl:input name="isFormSuitableForCorrectionRequest" message="impl:isFormSuitableForCorrectionRequest"/>
+			<wsdl:output name="isFormSuitableForCorrectionResponse" message="impl:isFormSuitableForCorrectionResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="getFormCodeByFormId" parameterOrder="in0 in1">
+			<wsdl:input name="getFormCodeByFormIdRequest" message="impl:getFormCodeByFormIdRequest"/>
+			<wsdl:output name="getFormCodeByFormIdResponse" message="impl:getFormCodeByFormIdResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="findLatestDisseminatedElementValueByEleCodes" parameterOrder="in0 in1">
+			<wsdl:input name="findLatestDisseminatedElementValueByEleCodesRequest" message="impl:findLatestDisseminatedElementValueByEleCodesRequest"/>
+			<wsdl:output name="findLatestDisseminatedElementValueByEleCodesResponse" message="impl:findLatestDisseminatedElementValueByEleCodesResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="deleteSavedForm" parameterOrder="in0 in1">
+			<wsdl:input name="deleteSavedFormRequest" message="impl:deleteSavedFormRequest"/>
+			<wsdl:output name="deleteSavedFormResponse" message="impl:deleteSavedFormResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="openForm" parameterOrder="in0 in1">
+			<wsdl:input name="openFormRequest" message="impl:openFormRequest"/>
+			<wsdl:output name="openFormResponse" message="impl:openFormResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="editForm" parameterOrder="in0 in1">
+			<wsdl:input name="editFormRequest" message="impl:editFormRequest"/>
+			<wsdl:output name="editFormResponse" message="impl:editFormResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="closeForm" parameterOrder="in0 in1">
+			<wsdl:input name="closeFormRequest" message="impl:closeFormRequest"/>
+			<wsdl:output name="closeFormResponse" message="impl:closeFormResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="getFormReferenceXML" parameterOrder="in0 in1">
+			<wsdl:input name="getFormReferenceXMLRequest" message="impl:getFormReferenceXMLRequest"/>
+			<wsdl:output name="getFormReferenceXMLResponse" message="impl:getFormReferenceXMLResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="getElementContent" parameterOrder="in0 in1 in2">
+			<wsdl:input name="getElementContentRequest" message="impl:getElementContentRequest"/>
+			<wsdl:output name="getElementContentResponse" message="impl:getElementContentResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="getElementIcon" parameterOrder="in0 in1 in2">
+			<wsdl:input name="getElementIconRequest" message="impl:getElementIconRequest"/>
+			<wsdl:output name="getElementIconResponse" message="impl:getElementIconResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="getLatestDisseminatedChoiceIconByEleCodeLang" parameterOrder="in0 in1 in2">
+			<wsdl:input name="getLatestDisseminatedChoiceIconByEleCodeLangRequest" message="impl:getLatestDisseminatedChoiceIconByEleCodeLangRequest"/>
+			<wsdl:output name="getLatestDisseminatedChoiceIconByEleCodeLangResponse" message="impl:getLatestDisseminatedChoiceIconByEleCodeLangResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+		<wsdl:operation name="findResources" parameterOrder="in0 in1">
+			<wsdl:input name="findResourcesRequest" message="impl:findResourcesRequest"/>
+			<wsdl:output name="findResourcesResponse" message="impl:findResourcesResponse"/>
+			<wsdl:fault name="BulletinWebServiceException" message="impl:BulletinWebServiceException"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="BulletinServicePortSoapBinding" type="impl:BulletinServiceWebService">
+		<wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="getBulletinFormListXML">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="isWizardForm">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getSignalXML">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getFormDetailsXML">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="saveForm">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="saveEleVal">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="findBulletinList">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="findActiveBulletinSubmit">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getSnapshotsXML">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="findStoppableSnapshotXML">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="loadFormXML">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="submitBulletin">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="submitBulletins">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getFormBulletinXML">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getFormDetailsByCodeXML">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="updateForm">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="findElementByFulltexts">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="findKeywordsByFulltexts">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="findListOfValue">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="findSignalByPhaseIdXML">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="findPreSignalListXML">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="isSignalRunning">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="enableSignal">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="disableSignal">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="disableSignalByInstanceId">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="isReadOnlyForm">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="isFormSubmitable">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="updateEleVals">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getUpdateSnapshotsXML">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getEditableFormDetailsXML">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="isWizardFormEditable">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="cancelSubmit">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="updateSnapshotXML">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getActiveBearingByDegree">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="findActiveKeywordsByCat">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="findActiveKeywordsValueByCatCode">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="findAllActiveWithContentByFormId">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="findDisseminateSchedule">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="findProdScheduleSubmitStatus">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="findActiveVisibleBulletin">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="findActiveVisibleBulletinByType">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getLastSignalInstanceBySignalCodeAndRefCode">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getActiveLPS_SequenceByHKOOID">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="findPreviousSignalBySignalTypeAndEndTime">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="findActiveSignalRequestByTimePeriodXML">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="findActiveSignalRequestBySendTime">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getLatestStrengthActiveTimeBySignalCodeCutOffTime">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="isFormSuitableForCorrection">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getFormCodeByFormId">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="deleteSavedForm">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="openForm">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="editForm">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="closeForm">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getFormReferenceXML">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getElementContent">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getElementIcon">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getLatestDisseminatedChoiceIconByEleCodeLang">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="findResources">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="findLatestDisseminatedElementValueByEleCodes">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:output>
+			<wsdl:fault name="BulletinWebServiceException">
+				<wsdlsoap:fault name="BulletinWebServiceException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://ejb.bulletin.service.minds.mips/"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="BulletinServiceWebServiceService">
+		<wsdl:port name="BulletinServicePort" binding="impl:BulletinServicePortSoapBinding">
+			<wsdlsoap:address location="http://127.0.0.1"/>
+		</wsdl:port>
+	</wsdl:service>
+	<!--WSDL created by Apache Axis version: 1.2RC2
+Built on Dec 08, 2004 (12:13:10 PST)-->
+</wsdl:definitions>
